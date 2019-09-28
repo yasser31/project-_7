@@ -7,19 +7,30 @@ class MockResponse():
     @staticmethod
     def json():
         return {
-            "response": "yes"
+            "candidates": [
+                {
+                    "formatted_address": "some address",
+                    "geometry": {
+                        "location": "some location"
+                    }
+                }
+            ]
         }
 
+
 def test_json_response(monkeypatch):
-    
+
     def mock_return(*args, **kwargs):
         return MockResponse()
-    
-    with app.test_request_context():
+
+    with app.test_request_context() as req:
+        req.request.args = {"query": "query"}
         monkeypatch.setattr(requests, "get", mock_return)
-        result = search()
-        
-    assert result['response'] == 'yes'
+        result = search().get_json()
+
+    assert result['address'] == 'some address'
+    assert result['location'] == "some location"
+
 
 def test_index():
     test_client = app.test_client()
