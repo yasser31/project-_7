@@ -7596,6 +7596,10 @@ button.bg-dark:focus {
   margin-bottom: 3rem !important;
 }
 
+.mt-neg{
+  margin-top: -6rem !important;
+}
+
 .ml-5,
 .mx-5 {
   margin-left: 3rem !important;

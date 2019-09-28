@@ -43,36 +43,39 @@
             $(".spinner-border").show();
             $.get('/search/', { query: $('.message_input').val() }, function initMap(data) {
                 $(".spinner-border").hide();
+                addressResponse = ["Bien-sur mont petit ! la voici !", "Et vous voila servi",
+                    " À votre service capitaine !", " Quoi de plus facile",
+                    "La voici, besoin d'autre chose ?",
+                    " Tu sais, moi les adresses, ça me connait",
+                    " Bien-sur, si tu veux que je te donne l'adresse de celui à qui tu dois de l'argent, je peut le faire mais entre nous ;)"]
+                var random = Math.floor(Math.random() * addressResponse.length);
+                sendMessage(addressResponse[random]);
+                setTimeout(function () {
+                    sendMessage(data.address);
+                }, 3000);
                 // The map
                 var location = data.location
                 var map = new google.maps.Map(
                     document.getElementById('map'), { zoom: 4, center: location });
                 // The marker
                 var marker = new google.maps.Marker({ position: location, map: map });
-                addressResponse = ["Bien-sur mont petit ! la voici !", "Et vous voila servi",
-                    " À votre service capitaine", " Quoi de plus facile",
-                    "La voici, besoin d'autre chose",
-                    " Tu sais, les adresses moi, ça me connait",
-                    " Bien-sur, si tu veux que je te donne l'adresse de celui à qui tu doit de l'argent, je peut le faire mais entre nous ;)"]
-                var random = Math.floor(Math.random() * addressResponse.length);
-                setTimeout(function () {
-                    sendMessage(addressResponse[random]);
-                    sendMessage(data.address);
-                }, 3000);
             });
             $.get("/wiki/", { query: $('.message_input').val() }, function (data) {
-                var wikiResponse = ["Petit avec moi y'a toujours une petite hisoire quelque part, en voila une",
-                    "En plus de l'adresse je raconte une histoire interessante regarde en bas ",
-                    "Je suis en bonne humeur aujourd'hui je rajoute une histoire à l'adresse",
-                    "GrandPy et les histoires j'en ai par centaine, en voila une regarde en bas",
-                    "Je ne peut pas ne pas raconter une histoire sur ça"]
+                var wikiResponse = ["Petit, avec moi, y'a toujours une petite hisoire quelque part, en voila une",
+                    "En plus de l'adresse, je te raconte une histoire interessante, regarde en bas ",
+                    "Je suis en bonne humeur aujourd'hui, je rajoute une histoire à l'adresse",
+                    "Ahhh ! GrandPy et les histoires, j'en ai par centaine, en voila une, regarde en bas",
+                    "Je ne peut pas m'empécher de te raconter une histoire sur ça"]
                 var random = Math.floor(Math.random() * wikiResponse.length);
                 setTimeout(function () {
                     sendMessage(wikiResponse[random]);
-                    var wiki = data.wiki
-                    $("#wiki").text(wiki);
+                    
                 }, 3000);
-
+                var wiki = data.wiki
+                setTimeout(function () {
+                    $("#wiki").text(wiki);
+                }, 4000);
+                
             });
 
             return sendMessage(getMessageText());
