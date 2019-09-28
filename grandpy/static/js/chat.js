@@ -52,6 +52,7 @@
                 var wiki = data.wiki
                 $("p").text(wiki);
             });
+            sendMessage("Bien-sur ")
             return sendMessage(getMessageText());
         });
         $('.message_input').keyup(function (e) {
