@@ -1,5 +1,5 @@
 (function () {
-    $(".spinner-border").hide();
+    //$(".spinner-border").hide();
     var Message;
     Message = function (arg) {
         this.text = arg.text, this.message_side = arg.message_side;
@@ -40,9 +40,9 @@
             return $messages.animate({ scrollTop: $messages.prop('scrollHeight') }, 300);
         };
         $('.send_message').click(function (e) {
-            $(".spinner-border").show();
+            //$(".spinner-border").show();
             $.get('/search/', { query: $('.message_input').val() }, function initMap(data) {
-                $(".spinner-border").hide();
+                //$(".spinner-border").hide();
                 addressResponse = ["Bien-sur mont petit ! la voici !", "Et vous voila servi",
                     " À votre service capitaine !", " Quoi de plus facile",
                     "La voici, besoin d'autre chose ?",

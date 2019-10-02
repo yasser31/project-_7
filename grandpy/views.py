@@ -30,13 +30,13 @@ def search():
     result = place_result.json()
     address = result["candidates"][0]["formatted_address"]
     location = result["candidates"][0]["geometry"]["location"]
-    print(address, location)
     return jsonify(address=address, location=location)
 
 
 @app.route('/wiki/')
 def wiki():
-    query = request.args.get("query")
+    exp = request.args.get("query")
+    query = parse(exp)
     print(query)
     wikipedia.set_lang("fr")
     wiki_result = wikipedia.summary(query, sentences=4)
