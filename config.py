@@ -1,4 +1,5 @@
 KEY = "AIzaSyCUY1tRBoMcXdPfMtL_ZABKl3zeQzUw1OY"
+SEARCH_URL = "https://maps.googleapis.com/maps/api/place/findplacefromtext/json"
 stop_words = (
     "'", "a", "abord", "absolument", "afin", "ah", "ai", "aie", "ailleurs", "ainsi",
     "ait", "allaient", "allo", "allons", "allô", "alors", "anterieur", "anterieure",
