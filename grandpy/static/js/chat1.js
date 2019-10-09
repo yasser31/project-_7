@@ -52,7 +52,9 @@ $(document).ready(function () {
                     " Tu sais, moi les adresses, ça me connait",
                     " Bien-sur, si tu veux que je te donne l'adresse de celui à qui tu dois de l'argent, je peut le faire mais entre nous ;)"]
                 var random = Math.floor(Math.random() * addressResponse.length);
-                botMessage(addressResponse[random]);
+                setTimeout(function(){
+                    botMessage(addressResponse[random]);
+                }, 3000);
                 setTimeout(function () {
                     botMessage(data.address);
                 }, 3000);
