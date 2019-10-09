@@ -39,7 +39,7 @@
             message.draw();
             return $messages.animate({ scrollTop: $messages.prop('scrollHeight') }, 300);
         };
-        $('.send_message').click(function (e) {
+        $('.send_message').on("click", function (e) {
             $(".spinner-border").show();
             $.get('/search/', { query: $('.message_input').val() }, function initMap(data) {
                 $(".spinner-border").hide();

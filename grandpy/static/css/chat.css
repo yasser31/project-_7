@@ -7,6 +7,9 @@
     font-family: "Calibri", "Roboto", sans-serif;
   }
   
+  .avatar_image{
+    border-radius: 50%;
+  }
   .chat_window {
     position: relative;
     width: calc(100% - 20px);
