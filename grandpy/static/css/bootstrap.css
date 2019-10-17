@@ -7579,6 +7579,10 @@ button.bg-dark:focus {
   margin-left: 1.5rem !important;
 }
 
+.ml-6{
+  margin-left: 13rem !important;
+}
+
 .m-5 {
   margin: 3rem !important;
 }
