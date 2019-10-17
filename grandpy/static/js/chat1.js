@@ -42,8 +42,13 @@ $(document).ready(function () {
             $(".spinner-border").hide();
             if (data.error) {
                 $("#map").empty();
-                botMessage("Désolé je suis un peut perdu je ne trouve pas l'adresse")
-                $("#map").append(`<img src="../static/images/error.png" alt="error image" class="h-100 w-100">`);
+                setTimeout(function(){
+                    botMessage("Désolé je suis un peut perdu je ne trouve pas l'adresse");
+                }, 2000);
+                setTimeout(function(){
+                    $("#map").append(`<img src="../static/images/error.png" alt="error image" class="h-100 w-100">`);
+                }, 2000)
+                
             }
             else {
                 $("#map").empty();
@@ -70,7 +75,10 @@ $(document).ready(function () {
         $.get("/wiki/", { query: $('.message_input').val() }, function (data) {
             if (data.error) {
                 $("#wiki").empty();
-                botMessage("Désolé petit j'ai pas d'histoire cette foic-ci");
+                setTimeout(function(){
+                    botMessage("Désolé petit j'ai pas d'histoire cette foic-ci");
+                }, 2000)
+                
             }
             else {
                 $("#wiki").empty();
