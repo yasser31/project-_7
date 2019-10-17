@@ -42,6 +42,7 @@ $(document).ready(function () {
             $(".spinner-border").hide();
             if (data.error) {
                 $("#map").empty();
+                botMessage("Désolé je suis un peut perdu je ne trouve pas l'adresse")
                 $("#map").append(`<img src="../static/images/error.png" alt="error image" class="h-100 w-100">`);
             }
             else {
@@ -69,6 +70,7 @@ $(document).ready(function () {
         $.get("/wiki/", { query: $('.message_input').val() }, function (data) {
             if (data.error) {
                 $("#wiki").empty();
+                botMessage("Désolé petit j'ai pas d'histoire cette foic-ci");
             }
             else {
                 $("#wiki").empty();
