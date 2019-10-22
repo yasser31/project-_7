@@ -20,6 +20,7 @@ def index():
 def search():
     exp = request.args.get("query")
     query = parse(exp)
+    print(query)
     place_search_params = {
         "key": KEY,
         "input": query,
@@ -45,7 +46,7 @@ def wiki():
     wikipedia.set_lang("fr")
     try:
         wiki_result = wikipedia.summary(query, sentences=4)
-    except:
+    except PageError:
         return jsonify(error=True)
     else:
         return jsonify(wiki=wiki_result)
