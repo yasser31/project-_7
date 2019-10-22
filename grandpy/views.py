@@ -26,7 +26,7 @@ def search():
         "input": query,
         "inputtype": "textquery",
         "fields": "formatted_address,geometry/location",
-        "language": "fr"
+        "language": "en"
     }
     try:
         place_result = requests.get(SEARCH_URL, params=place_search_params)
