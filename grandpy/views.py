@@ -33,7 +33,7 @@ def search():
         location = result_json["candidates"][0]["geometry"]["location"]
     except IndexError:
         error = True
-        return jsonify(error=True)
+        return jsonify(error)
     else:
         return jsonify(address=address, location=location)
 

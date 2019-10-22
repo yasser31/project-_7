@@ -60,10 +60,10 @@ $(document).ready(function () {
                 var random = Math.floor(Math.random() * addressResponse.length);
                 setTimeout(function(){
                     botMessage(addressResponse[random]);
-                }, 3000);
+                }, 1000);
                 setTimeout(function () {
                     botMessage(data.address);
-                }, 3000);
+                }, 2000);
                 // The map
                 var location = data.location
                 var map = new google.maps.Map(
@@ -77,7 +77,7 @@ $(document).ready(function () {
                 $("#wiki").empty();
                 setTimeout(function(){
                     botMessage("Désolé petit j'ai pas d'histoire cette foic-ci");
-                }, 2000)
+                }, 3000)
                 
             }
             else {
@@ -90,7 +90,7 @@ $(document).ready(function () {
                 var random = Math.floor(Math.random() * wikiResponse.length);
                 setTimeout(function () {
                     botMessage(wikiResponse[random]);
-                }, 3000);
+                }, 4000);
                 var wiki = data.wiki
                 setTimeout(function () {
                     $("#wiki").text(wiki);
