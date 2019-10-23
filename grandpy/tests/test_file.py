@@ -1,5 +1,6 @@
+import pytest
 import requests
-from grandpy.views import search, app, index
+from grandpy.views import search, app, index, wiki
 
 
 class MockResponse():
@@ -36,3 +37,17 @@ def test_index():
     test_client = app.test_client()
     test = test_client.get('/')
     assert test.status_code == 200
+
+
+def test_search_errors():
+    with app.test_request_context() as req:
+        req.request.args = {"query": "fsfdsfs"}
+        result = search().get_json()
+        assert result["error"] is True
+
+
+def test_wiki_errors():
+    with app.test_request_context() as req:
+        req.request.args = {"query": "ffsdfsdfds"}
+        result = wiki().get_json()
+        assert result["error"] is True
