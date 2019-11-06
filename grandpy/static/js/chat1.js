@@ -1,15 +1,15 @@
 $(document).ready(function () {
-    $(document).bind(function(e){
-        if(e.which == 13) {
-            $(".send_message").trigger("click");
-        }
-    });
+    
     $(".spinner-border").hide();
     function getMessage() {
         var message = $(".message_input").val();
         return message
     }
-
+    $(document).bind('keydown', function(e){
+        if(e.which == 13) {
+            $(".send_message").trigger("click");
+        }
+    });
     function userMessage() {
         var element = `<li class="message left appeared ">
         <div class="avatar"><img src="../static/images/user.jpeg" alt="bot image"
