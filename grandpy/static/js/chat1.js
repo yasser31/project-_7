@@ -1,4 +1,9 @@
 $(document).ready(function () {
+    $(document).bind(function(e){
+        if(e.which == 13) {
+            $(".send_message").trigger("click");
+        }
+    });
     $(".spinner-border").hide();
     function getMessage() {
         var message = $(".message_input").val();
