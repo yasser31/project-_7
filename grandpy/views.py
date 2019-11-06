@@ -6,19 +6,24 @@ from flask import Flask, jsonify, request
 from flask import render_template
 from .function import parse
 
-
+# flask app
 app = Flask(__name__)
+# app config
 app.config.from_object('config')
 
 
+# index view
 @app.route('/')
 def index():
     return render_template("index.html")
 
 
+# seach view
 @app.route('/search/')
 def search():
+    # th expression type by the user
     exp = request.args.get("query")
+    # the query after being parse by function
     query = parse(exp)
     place_search_params = {
         "key": KEY,
@@ -37,7 +42,7 @@ def search():
     else:
         return jsonify(address=address, location=location)
 
-
+# view handling wikipedia
 @app.route('/wiki/')
 def wiki():
     exp = request.args.get("query")

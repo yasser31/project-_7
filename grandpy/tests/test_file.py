@@ -4,7 +4,7 @@ from grandpy.views import search, app, index, wiki
 
 
 class MockResponse():
-
+'''define a json response and change the get response'''
     @staticmethod
     def json():
         return {
@@ -17,6 +17,8 @@ class MockResponse():
                 }
             ]
         }
+
+# json response test
 
 
 def test_json_response(monkeypatch):
@@ -32,11 +34,15 @@ def test_json_response(monkeypatch):
     assert result['address'] == 'some address'
     assert result['location'] == "some location"
 
+# get index page test
+
 
 def test_index():
     test_client = app.test_client()
     test = test_client.get('/')
     assert test.status_code == 200
+
+# test place search errors
 
 
 def test_search_errors():
@@ -44,6 +50,8 @@ def test_search_errors():
         req.request.args = {"query": "fsfdsfs"}
         result = search().get_json()
         assert result["error"] is True
+
+# test wiki search errors
 
 
 def test_wiki_errors():
