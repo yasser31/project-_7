@@ -4,7 +4,9 @@ from grandpy.views import search, app, index, wiki
 
 
 class MockResponse():
-'''define a json response and change the get response'''
+
+    '''define a json response and change the get response'''
+
     @staticmethod
     def json():
         return {

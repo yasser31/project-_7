@@ -1,5 +1,6 @@
-import requests
 import pdb
+import requests
+import speech_recognition as sr
 import wikipedia
 from config import KEY, SEARCH_URL
 from flask import Flask, jsonify, request
@@ -20,11 +21,14 @@ def index():
 
 # seach view
 @app.route('/search/')
-def search():
-    # th expression type by the user
-    exp = request.args.get("query")
-    # the query after being parse by function
-    query = parse(exp)
+def search(text=None):
+    if text:
+        query = parse(text)
+    else:
+        # th expression type by the user
+        exp = request.args.get("query")
+        # the query after being parse by function
+        query = parse(exp)
     place_search_params = {
         "key": KEY,
         "input": query,
@@ -44,9 +48,12 @@ def search():
 
 # view handling wikipedia
 @app.route('/wiki/')
-def wiki():
-    exp = request.args.get("query")
-    query = parse(exp)
+def wiki(text=None):
+    if text:
+        query = parse(text)
+    else:
+        exp = request.args.get("query")
+        query = parse(exp)
     wikipedia.set_lang("fr")
     try:
         wiki_result = wikipedia.summary(query, sentences=4)
@@ -54,3 +61,15 @@ def wiki():
         return jsonify(error=True)
     else:
         return jsonify(wiki=wiki_result)
+
+
+@app.route('/speech/')
+def speech():
+    r = sr.Recognizer()
+    mic = sr.Microphone(device_index=8)
+    with mic as source:
+        r.adjust_for_ambient_noise(source)
+        audio = r.listen(source)
+        text = r.recognize_google(audio, language='fr-FR')
+        print(text)
+        return jsonify(text=text)

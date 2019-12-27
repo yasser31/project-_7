@@ -10,6 +10,7 @@ $(document).ready(function () {
             $(".send_message").trigger("click");
         }
     });
+    
     function userMessage() {
         var element = `<li class="message left appeared ">
         <div class="avatar"><img src="../static/images/user.jpeg" alt="bot image"
@@ -39,6 +40,12 @@ $(document).ready(function () {
             return message;
         });
     }
+
+    $("#speech").on("click", function(){
+        $.get("/speech/", function(data){
+            $(".message_input").val(data.text);
+        });
+    });
 
     $(".send_message").on("click", function () {
         userMessage();

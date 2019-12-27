@@ -1,4 +1,5 @@
 bin/
+config.py
 include/
 lib/
 __pycache__
