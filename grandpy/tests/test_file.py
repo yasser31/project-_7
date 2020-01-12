@@ -1,3 +1,9 @@
+from selenium import webdriver
+import speech_recognition as sr
+from selenium.webdriver.common.by import By
+from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.ui import WebDriverWait
 import pytest
 import requests
 from grandpy.views import search, app, index, wiki
@@ -61,3 +67,21 @@ def test_wiki_errors():
         req.request.args = {"query": "ffsdfsdfds"}
         result = wiki().get_json()
         assert result["error"] is True
+
+
+def test_selenium():
+    driver = webdriver.Firefox()
+    driver.get("http://127.0.0.1:5000")
+    element = WebDriverWait(driver, 10).until(
+        EC.presence_of_element_located((By.ID, "speech"))
+    )
+    element.click()
+
+
+def test_speech():
+    r = sr.Recognizer()
+    audio_file = sr.AudioFile("openclassrooms.wav")
+    with audio_file as source:
+        audio = r.record(source)
+        text = r.recognize_google(audio, language='fr-FR')
+    assert text == "openclassroom"

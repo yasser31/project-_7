@@ -42,7 +42,9 @@ $(document).ready(function () {
     }
 
     $("#speech").on("click", function(){
+        $(".spinner-border").show();
         $.get("/speech/", function(data){
+            $(".spinner-border").hide();
             $(".message_input").val(data.text);
         });
     });
