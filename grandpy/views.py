@@ -63,13 +63,13 @@ def wiki(text=None):
         return jsonify(wiki=wiki_result)
 
 
-@app.route('/speech/')
+@app.route('/speech/', methods=['POST'])
 def speech():
+    file = request.files["audio"]
     r = sr.Recognizer()
-    mic = sr.Microphone(device_index=8)
-    with mic as source:
+    audio_file = sr.AudioFile(file)
+    with audio_file as source:
         r.adjust_for_ambient_noise(source)
-        audio = r.listen(source)
+        audio = r.record(source)
         text = r.recognize_google(audio, language='fr-FR')
-        print(text)
         return jsonify(text=text)

@@ -1,16 +1,15 @@
 $(document).ready(function () {
-    
     $(".spinner-border").hide();
     function getMessage() {
         var message = $(".message_input").val();
         return message
     }
-    $(document).bind('keydown', function(e){
-        if(e.which == 13) {
+    $(document).bind('keydown', function (e) {
+        if (e.which == 13) {
             $(".send_message").trigger("click");
         }
     });
-    
+
     function userMessage() {
         var element = `<li class="message left appeared ">
         <div class="avatar"><img src="../static/images/user.jpeg" alt="bot image"
@@ -40,15 +39,6 @@ $(document).ready(function () {
             return message;
         });
     }
-
-    $("#speech").on("click", function(){
-        $(".spinner-border").show();
-        $.get("/speech/", function(data){
-            $(".spinner-border").hide();
-            $(".message_input").val(data.text);
-        });
-    });
-
     $(".send_message").on("click", function () {
         userMessage();
         $(".spinner-border").show();
@@ -56,13 +46,13 @@ $(document).ready(function () {
             $(".spinner-border").hide();
             if (data.error) {
                 $("#map").empty();
-                setTimeout(function(){
+                setTimeout(function () {
                     botMessage("Désolé je suis un peut perdu je ne trouve pas l'adresse");
                 }, 2000);
-                setTimeout(function(){
+                setTimeout(function () {
                     $("#map").append(`<img src="../static/images/error.png" alt="error image" class="h-100 w-100">`);
                 }, 2000)
-                
+
             }
             else {
                 $("#map").empty();
@@ -72,7 +62,7 @@ $(document).ready(function () {
                     " Tu sais, moi les adresses, ça me connait",
                     " Bien-sur, si tu veux que je te donne l'adresse de celui à qui tu dois de l'argent, je peut le faire mais entre nous ;)"]
                 var random = Math.floor(Math.random() * addressResponse.length);
-                setTimeout(function(){
+                setTimeout(function () {
                     botMessage(addressResponse[random]);
                 }, 1000);
                 setTimeout(function () {
@@ -89,10 +79,10 @@ $(document).ready(function () {
         $.get("/wiki/", { query: $('.message_input').val() }, function (data) {
             if (data.error) {
                 $("#wiki").empty();
-                setTimeout(function(){
+                setTimeout(function () {
                     botMessage("Désolé petit j'ai pas d'histoire cette foic-ci");
                 }, 3000)
-                
+
             }
             else {
                 $("#wiki").empty();
