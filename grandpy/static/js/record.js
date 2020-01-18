@@ -1,17 +1,6 @@
 $(".fa-microphone").on("click", function startRecording() {
+    $(".spinner-border").show();
     $("#speech").removeClass("fa-microphone");
-    $(".close").animate({
-        opacity: 0
-    }, 5000);
-
-    $(".minimize").animate({
-        opacity: 0
-    }, 5000);
-
-    $(".maximize").animate({
-        opacity: 0
-    }, 5000);
-
     var input;
     var rec;
     var AudioContext = window.AudioContext || window.webkitAudioContext;
@@ -39,6 +28,7 @@ $(".fa-microphone").on("click", function startRecording() {
         setTimeout(function () {
             rec.stop(); //stop microphone access 
             gumStream.getAudioTracks()[0].stop();
+            $("#speech").addClass("fa-microphone");
             rec.exportWAV(function (blob) {
                 var formData = new FormData();
                 var filename = new Date().toISOString();
@@ -46,10 +36,15 @@ $(".fa-microphone").on("click", function startRecording() {
                 var xhr = new XMLHttpRequest();
                 xhr.open("POST", "/speech/", true);
                 xhr.send(formData);
-                $(".message_input").val(xhr.responseText);
+                xhr.onreadystatechange = function() {
+                    $(".spinner-border").hide();
+                    if (xhr.readyState === 4) {
+                      $(".message_input").val(xhr.response);
+                    }
+                  }
                 });
                 
-            }, 5000);
+            }, 7000);
     });
 
 });

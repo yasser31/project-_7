@@ -72,4 +72,4 @@ def speech():
         r.adjust_for_ambient_noise(source)
         audio = r.record(source)
         text = r.recognize_google(audio, language='fr-FR')
-        return jsonify(text=text)
+        return text
