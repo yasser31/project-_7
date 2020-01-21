@@ -1,5 +1,4 @@
 $(".fa-microphone").on("click", function startRecording() {
-    $(".spinner-border").show();
     $("#speech").removeClass("fa-microphone");
     var input;
     var rec;
@@ -36,10 +35,12 @@ $(".fa-microphone").on("click", function startRecording() {
                 var xhr = new XMLHttpRequest();
                 xhr.open("POST", "/speech/", true);
                 xhr.send(formData);
+                $(".spinner-border").show();
                 xhr.onreadystatechange = function() {
                     $(".spinner-border").hide();
                     if (xhr.readyState === 4) {
-                      $(".message_input").val(xhr.response);
+                      json = JSON.parse(xhr.response);
+                      $(".message_input").val(json.text);
                     }
                   }
                 });
