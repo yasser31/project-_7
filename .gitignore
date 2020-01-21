@@ -1,5 +1,6 @@
 bin/
 include/
+config.py
 lib/
 __pycache__
 *.pyc
