@@ -14,7 +14,7 @@ app.config.from_object('config')
 
 
 # index view
-@app.route('/')
+@app.route('/index/')
 def index():
     return render_template("index.html")
 
