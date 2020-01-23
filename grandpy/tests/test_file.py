@@ -47,7 +47,7 @@ def test_json_response(monkeypatch):
 
 def test_index():
     test_client = app.test_client()
-    test = test_client.get('/')
+    test = test_client.get('/index/')
     assert test.status_code == 200
 
 # test place search errors
