@@ -71,7 +71,7 @@ def test_wiki_errors():
 
 def test_selenium():
     driver = webdriver.Firefox()
-    driver.get("http://127.0.0.1:5000")
+    driver.get("http://127.0.0.1:5000/index/")
     element = WebDriverWait(driver, 10).until(
         EC.presence_of_element_located((By.ID, "speech"))
     )
