@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html class="h-100">
 
@@ -11,6 +12,7 @@
         href="{{ url_for('static', filename='css/bootstrap.css') }}" rel=stylesheet type=text/css> <link
         href="{{ url_for('static', filename='css/all.min.css') }}" rel=stylesheet type=text/css> </head> <body
         class="h-100">
+
     <div class="navbar h-25 mb-3">
         <img src="{{url_for('static', filename='images/logo.png')}}" alt="logo" class="h-100">
     </div>
@@ -37,8 +39,10 @@
         </div>
         <ul class="messages"></ul>
         <div class="bottom_wrapper clearfix">
-            <div class="message_input_wrapper"><input class="message_input" placeholder="Ask papy about a place..." />
+            
+            <div class="message_input_wrapper">{% autoescape true %}<input class="message_input" placeholder="Ask papy about a place..." />{% endautoescape %}
             </div>
+            
             <div class="send_message">
                 <div class="icon"></div>
                 <div class="text">Send</div>
